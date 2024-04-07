@@ -721,9 +721,9 @@
       (hull
             (->> (sphere out-radius)
                 (translate floor-anchor-poslr))
-            (key-place lastcol cornerrow (support-face :down (- -1.5 plate-thickness)))
+            (key-place lastcol (if extra-row lastrow cornerrow) (support-face :down (- -1.5 plate-thickness)))
       )
-      (key-place lastcol cornerrow (support-m :down (- -0.1 plate-thickness)))
+      (key-place lastcol (if extra-row lastrow cornerrow) (support-m :down (- -0.1 plate-thickness)))
 
       ; upper right pole
       (hull
@@ -798,14 +798,14 @@
                   (with-fn 30))]
         (union
           ; screw holes below mounting holes
-          (key-place lastcol cornerrow (ext-out :down (- -0.1 plate-thickness)  (with-fn 30 (cylinder inner-radius 10))))
+          (key-place lastcol (if extra-row lastrow cornerrow) (ext-out :down (- -0.1 plate-thickness)  (with-fn 30 (cylinder inner-radius 10))))
           (key-place lastcol 0 (ext-out :up (- -0.1 plate-thickness) (with-fn 30 (cylinder inner-radius 10))))
           (key-place 0 0 (ext-out :up (- -0.1 plate-thickness) (with-fn 30 (cylinder inner-radius 10))))
           (key-place (+  innercol-offset 1) lastrow (ext-out :down (- -0.1 plate-thickness) (with-fn 30 (cylinder inner-radius 10))))
 
           ; m3 hex nuts
           (key-place lastcol 0 (hex-slot :up (- -4 plate-thickness)))
-          (key-place lastcol cornerrow (hex-slot :down (- -4 plate-thickness)))
+          (key-place lastcol (if extra-row lastrow cornerrow) (hex-slot :down (- -4 plate-thickness)))
           (key-place 0 0 (hex-slot :up (- -4 plate-thickness)))
           (key-place (+  innercol-offset 1) lastrow (hex-slot :down (- -4 plate-thickness)))
           (->> (m3hex 0.3)
