@@ -598,7 +598,7 @@
         (key-place 0 0 (mount-hole :up))
         (key-place (+  innercol-offset 1) lastrow (mount-hole :down))
         (key-place lastcol 0 (mount-hole :up))
-        (key-place lastcol cornerrow ( mount-hole :down))
+        (key-place lastcol (if extra-row lastrow cornerrow) ( mount-hole :down))
     )
 )
 (def thumb-plate-holes
